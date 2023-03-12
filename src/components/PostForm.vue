@@ -5,12 +5,12 @@
   * short syntax:
   v-model="post.text"
 -->
-<template lang="">
+<template>
   <form class="form" @submit.prevent>
     <h2 class="form-title">Creating post</h2>
     <custom-input v-model.trim="post.title" type="text" placeholder="title" />
     <custom-input
-      v-model.trim="post.text"
+      v-model.trim="post.body"
       type="text"
       placeholder="description"
     />
@@ -26,7 +26,7 @@ export default {
     return {
       post: {
         title: '',
-        text: '',
+        body: '',
       },
     };
   },
@@ -38,10 +38,19 @@ export default {
       this.$emit('create', this.post);
       this.post = {
         title: '',
-        text: '',
+        body: '',
       };
     },
   },
+  //deep watch method:
+  // watch: {
+  //   post: {
+  //     handler(newVal) {
+  //       console.log(newVal);
+  //     },
+  //     deep: true,
+  //   },
+  // },
 };
 </script>
 
