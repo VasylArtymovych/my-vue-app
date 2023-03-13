@@ -1,13 +1,14 @@
 <template lang="">
-  <input :value="modelValue" @input="updateInput" class="input" />
+  <input :value="modelValue" @input="updateInput" class="input" :type="type" />
 </template>
 
 <script>
 export default {
   name: 'custom-input',
   props: {
-    // value: [String, Number],
+    // value: [String, Number], // named value!!!
     modelValue: [String, Number],
+    type: String,
   },
 
   methods: {

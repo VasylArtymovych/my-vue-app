@@ -1,6 +1,7 @@
 <template>
   <li class="list-item">
     <div>
+      <p><strong>Id:</strong> {{ post.id }}</p>
       <p><strong>Post title:</strong> {{ post.title }}</p>
       <p><strong>Description:</strong> {{ post.body }}</p>
     </div>
