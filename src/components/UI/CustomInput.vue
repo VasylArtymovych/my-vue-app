@@ -6,14 +6,15 @@
 export default {
   name: 'custom-input',
   props: {
-    // value: [String, Number], // named value!!!
     modelValue: [String, Number],
-    type: String,
+    type: {
+      type: String,
+      default: 'text',
+    },
   },
 
   methods: {
     updateInput(event) {
-      // this.$emit('update:value', event.target.value);
       this.$emit('update:modelValue', event.target.value);
     },
   },

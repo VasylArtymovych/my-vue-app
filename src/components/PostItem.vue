@@ -6,6 +6,9 @@
       <p><strong>Description:</strong> {{ post.body }}</p>
     </div>
     <div class="list-item-btn">
+      <custom-button @click="$router.push(`/posts/${post.id}`)"
+        >OPEN</custom-button
+      >
       <custom-button @click="$emit('deletePost', post)">DELETE</custom-button>
     </div>
   </li>
@@ -25,6 +28,7 @@ export default {
       type: Object,
       required: true,
     },
+    deletePost: Function,
   },
 };
 </script>
@@ -44,6 +48,9 @@ export default {
   word-break: break-all;
 }
 .list-item-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   margin-left: 5px;
 }
 /* .list-item::marker {

@@ -1,7 +1,7 @@
 <template>
   <div class="select">
     <label for="sortOpts">Posts sort options</label>
-    <select @change="changeOption" id="sortOpts" name="Select option">
+    <select id="sortOpts" name="elect-option" @change="changeOption">
       <option value="" disabled selected>Select option</option>
       <option v-for="opt in options" :key="opt.value" :value="opt.value">
         {{ opt.name }}
@@ -14,9 +14,7 @@
 export default {
   name: 'custom-select',
   props: {
-    select: {
-      type: String,
-    },
+    modelValue: String,
     options: {
       type: Array,
       default: () => [],
@@ -25,7 +23,7 @@ export default {
 
   methods: {
     changeOption(event) {
-      this.$emit('update:select', event.target.value);
+      this.$emit('update:modelValue', event.target.value);
     },
   },
 };
