@@ -6,6 +6,9 @@
       <custom-button @click="$router.push('/store')"
         >POSTS Store
       </custom-button>
+      <custom-button @click="$router.push('/compositionApi')"
+        >POSTS compositionApi
+      </custom-button>
     </div>
   </div>
 </template>
