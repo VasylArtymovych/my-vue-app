@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main-title>POST'S PAGE</main-title>
+    <main-title>POST'S PAGE compositionApi</main-title>
     <div class="app-btns">
       <custom-select v-model="selectedSort" :options="sortOptions" />
       <custom-input
@@ -18,7 +18,7 @@
       >
     </div>
     <custom-dialog v-model:show="isVisibleDialog">
-      <Postform @create="createPost" />
+      <Postform @create="cretePostAndCloseDialog" />
     </custom-dialog>
     <PostList
       v-if="!isLoading"
@@ -26,11 +26,36 @@
       @deletePost="deletePost"
     />
     <div v-else>Loading posts...</div>
-    <!-- <div v-intersection="{ loadMorePosts }" class="observer"></div> -->
+    <div class="observer"></div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, reactive } from 'vue';
+import Postform from '@/components/PostForm.vue';
+import PostList from '@/components/PostList.vue';
+import CustomDialog from '@/components/UI/CustomDialog.vue';
+import { usePosts, useSortedPosts, useSortedAndSearchedPosts } from '@/hooks';
+
+const isVisibleDialog = ref(false);
+const sortOptions = reactive([
+  { value: 'title', name: 'sort by title' },
+  { value: 'body', name: 'sort by text' },
+]);
+const { posts, isLoading, createPost, deletePost } = usePosts(10);
+const { selectedSort, sortedPosts } = useSortedPosts(posts);
+const { searchQuery, sortedAndSearchedPosts } =
+  useSortedAndSearchedPosts(sortedPosts);
+
+const cretePostAndCloseDialog = (post) => {
+  createPost(post);
+  isVisibleDialog.value = false;
+};
+</script>
+
+/** same code only without keyword (stage) setup */
+<!-- <script>
+import { ref, reactive } from 'vue';
 import Postform from '@/components/PostForm.vue';
 import PostList from '@/components/PostList.vue';
 import CustomDialog from '@/components/UI/CustomDialog.vue';
@@ -43,35 +68,41 @@ export default {
     CustomDialog,
   },
 
-  data() {
-    return {
-      isVisibleDialog: false,
-      sortOptions: [
-        { value: 'title', name: 'sort by title' },
-        { value: 'body', name: 'sort by text' },
-      ],
-    };
-  },
-
-  setup(props) {
-    const { posts, isLoading, page, totalPages } = usePosts(10);
+  setup() {
+    const isVisibleDialog = ref(false);
+    const sortOptions = reactive([
+      { value: 'title', name: 'sort by title' },
+      { value: 'body', name: 'sort by text' },
+    ]);
+    const { posts, isLoading, page, totalPages, createPost, deletePost } =
+      usePosts(10);
     const { selectedSort, sortedPosts } = useSortedPosts(posts);
     const { searchQuery, sortedAndSearchedPosts } =
       useSortedAndSearchedPosts(sortedPosts);
 
+    const cretePostAndCloseDialog = (post) => {
+      createPost(post);
+      isVisibleDialog.value = false;
+    };
+
     return {
+      isVisibleDialog,
+      sortOptions,
       posts,
       isLoading,
       page,
       totalPages,
+      createPost,
+      deletePost,
       selectedSort,
       sortedPosts,
       searchQuery,
       sortedAndSearchedPosts,
+      cretePostAndCloseDialog,
     };
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 h1 {

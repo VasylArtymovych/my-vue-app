@@ -1,10 +1,3 @@
-<!-- 
-  * full_syntax of two-way binding
-  v-bind:value="post.text"
-  @input="this.post.text = $event.target.value" 
-  * short syntax:
-  v-model="post.text"
--->
 <template>
   <form class="form" @submit.prevent>
     <h2 class="form-title">Creating post</h2>
@@ -15,34 +8,42 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      post: {
-        title: '',
-        body: '',
-      },
-    };
-  },
+import { reactive } from 'vue';
 
-  methods: {
-    createPost() {
-      this.post.id = Date.now();
-      //event creator: accepts - first param event name, second and other params are used to deliver a data.
-      this.$emit('create', this.post);
-      this.post = {
-        title: '',
-        body: '',
-      };
-    },
+export default {
+  name: 'auth-form',
+  emits: ['create'],
+
+  setup(_, { emit }) {
+    const post = reactive({
+      title: '',
+      body: '',
+    });
+
+    const createPost = () => {
+      post.id = Date.now();
+      emit('create', post);
+    };
+
+    return { post, createPost };
   },
-  //deep watch method:
-  // watch: {
-  //   post: {
-  //     handler(newVal) {
-  //       console.log('new', newVal);
+  // data() {
+  //   return {
+  //     post: {
+  //       title: '',
+  //       body: '',
   //     },
-  //     deep: true,
+  //   };
+  // },
+
+  // methods: {
+  //   createPost() {
+  //     this.post.id = Date.now();
+  //     this.$emit('create', this.post);
+  //     this.post = {
+  //       title: '',
+  //       body: '',
+  //     };
   //   },
   // },
 };

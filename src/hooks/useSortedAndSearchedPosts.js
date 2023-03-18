@@ -2,9 +2,12 @@ import { computed, ref } from 'vue';
 
 export function useSortedAndSearchedPosts(sortedPosts) {
   const searchQuery = ref('');
+
+  const lowerCase = (val) => val.toLowerCase();
+
   const sortedAndSearchedPosts = computed(() => {
     return sortedPosts.value.filter((post) =>
-      post.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+      lowerCase(post.title).includes(lowerCase(searchQuery.value))
     );
   });
 

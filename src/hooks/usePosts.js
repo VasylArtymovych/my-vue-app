@@ -28,6 +28,14 @@ export function usePosts(limit) {
     }
   };
 
+  const createPost = (post) => {
+    posts.value.push(post);
+  };
+
+  const deletePost = (post) => {
+    posts.value = posts.value.filter((p) => p.id !== post.id);
+  };
+
   onMounted(fetching);
 
   return {
@@ -35,5 +43,7 @@ export function usePosts(limit) {
     isLoading,
     page,
     totalPages,
+    createPost,
+    deletePost,
   };
 }

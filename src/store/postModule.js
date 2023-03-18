@@ -36,7 +36,6 @@ export const postModule = {
 
   mutations: {
     setPosts(state, posts) {
-      console.log(posts);
       state.posts = posts;
     },
     setLoading(state, bool) {

@@ -12,7 +12,11 @@
       >
     </div>
     <div class="app-btns">
-      <custom-select v-model="selectedSortOption" :options="sortOptions" />
+      <custom-select
+        v-model="selectedSortOption"
+        :options="sortOptions"
+        @update:modelValue="setSelectedSortOption"
+      />
       <custom-input
         v-focus
         type="text"
@@ -80,6 +84,7 @@ export default {
       setPage: 'post/setPage',
       setSearchQuery: 'post/setSearchQuery',
       setPosts: 'post/setPosts',
+      setSelectedSortOption: 'post/setSelectedSortOption',
     }),
     ...mapActions({
       fetchPosts: 'post/fetchPosts',

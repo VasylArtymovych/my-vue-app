@@ -19,14 +19,13 @@
 import PostItem from './PostItem.vue';
 
 export default {
+  components: { PostItem },
   props: {
     posts: {
       type: Array,
       required: true,
     },
   },
-
-  components: { PostItem },
 };
 </script>
 

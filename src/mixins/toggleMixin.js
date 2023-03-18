@@ -13,6 +13,6 @@ export default {
   },
 
   mounted() {
-    console.log('mixin mount');
+    // console.log('mixin mount');
   },
 };

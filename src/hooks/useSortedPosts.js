@@ -2,6 +2,7 @@ import { computed, ref } from 'vue';
 
 export function useSortedPosts(posts) {
   const selectedSort = ref('');
+
   const sortedPosts = computed(() => {
     return selectedSort.value !== ''
       ? [...posts.value].sort((p1, p2) =>

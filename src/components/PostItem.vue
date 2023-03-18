@@ -9,12 +9,31 @@
       <custom-button @click="$router.push(`/posts/${post.id}`)"
         >OPEN</custom-button
       >
-      <custom-button @click="$emit('deletePost', post)">DELETE</custom-button>
+      <custom-button @click="deletPost">DELETE</custom-button>
     </div>
   </li>
 </template>
 
-<script>
+<script setup>
+const { post } = defineProps({
+  post: {
+    type: Object,
+    required: true,
+  },
+});
+const emit = defineEmits({
+  deletePost(payload) {
+    return !!(payload.title && payload.body && payload.id);
+  },
+});
+
+const deletPost = () => {
+  emit('deletePost', post);
+};
+</script>
+
+// same code without keyword setup:
+<!-- <script>
 export default {
   //declare emits option to fast check the events that component emits and see the validation;
   emits: {
@@ -28,10 +47,20 @@ export default {
       type: Object,
       required: true,
     },
-    deletePost: Function,
+  },
+
+  setup({ post }, { emit }) {
+    const deletPost = () => {
+      emit('deletePost', post);
+    };
+
+    return {
+      post,
+      deletPost,
+    };
   },
 };
-</script>
+</script> -->
 
 <style>
 .list-item {
