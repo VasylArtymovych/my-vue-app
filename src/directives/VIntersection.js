@@ -1,5 +1,6 @@
 export default {
   name: 'intersection',
+
   mounted(el, binding) {
     const options = {
       root: null,

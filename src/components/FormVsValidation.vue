@@ -43,7 +43,7 @@
         <small
           v-else-if="form.password.errors.minLength && form.password.touched"
           class="error"
-          >Password length can't be less thrn 7. length is:
+          >Password length can't be less then 7. length is:
           {{ form.password.value.length }}</small
         >
       </div>
@@ -57,9 +57,7 @@
 
 <script>
 import { useForm } from '@/hooks/useForm';
-
-const required = (val) => !!val;
-const minLength = (num) => (val) => val.length >= num;
+import { required, minLength } from '@/utils/validators';
 
 export default {
   setup() {

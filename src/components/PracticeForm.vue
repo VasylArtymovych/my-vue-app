@@ -19,11 +19,12 @@
     <button @click="changeCount">+</button>
     <p>Text: {{ count }}</p>
     <pre>{{ input }}</pre>
+    <pre>{{ todoId }}: {{ data }}</pre>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, watchEffect, computed } from 'vue';
 const val = ref('yerim');
 const checked = ref(false);
 const names = ref([]);
@@ -31,7 +32,7 @@ const obj = ref({ count: 0 });
 const count = computed(() => obj.value.count);
 const input = ref(null);
 const inputRef = (el) => {
-  console.log(el);
+  // console.log(el);
 };
 const chengeChecked = () => {
   checked.value = !checked.value;
@@ -44,14 +45,36 @@ const changeCh = (e) => {
     names.value.splice(indx, 1);
   }
 };
-
 const changeCount = () => {
   obj.value.count++;
+  todoId.value++;
 };
 
-watch([() => obj.value.count, checked], ([newZ, newY]) => {
-  console.log(newZ, newY);
+const todoId = ref(1);
+const data = ref(null);
+
+watchEffect(async () => {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  );
+  console.log('firstEffect', checked.value);
+  data.value = await response.json();
 });
+
+const unwatch = watchEffect(
+  // [() => obj.value.count, checked],
+  // ([newZ, newY]) => {
+  //   console.log(newZ, newY);
+  // },
+  // { immediate: true }
+  () => {
+    console.log(checked.value);
+  }
+);
+console.log(unwatch);
+// setTimeout(() => {
+//   unwatch();
+// }, 3000);
 </script>
 
 <style scoped>

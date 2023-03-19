@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :type="type">
+  <button class="btn" :type="type" :disabled="isDisabled">
     <slot></slot>
   </button>
 </template>
@@ -12,6 +12,7 @@ export default {
       type: String,
       default: 'submit',
     },
+    isDisabled: Boolean,
   },
 };
 </script>

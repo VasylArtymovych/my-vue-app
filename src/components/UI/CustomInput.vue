@@ -78,5 +78,10 @@ export default {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+  outline: none;
+}
+
+.notValid {
+  border: 1px solid red;
 }
 </style>

@@ -11,11 +11,13 @@ export function useForm(init = {}) {
 
   const withoutValid = (key) => key !== validKey;
 
+  //check wheather all fields are valid and set the valid key for form,
+  //if any one validation is false, than set the false as value.
   form[validKey] = computed(() => {
     return Object.keys(form)
       .filter(withoutValid)
       .reduce((acc, key) => {
-        //if previos check return false then for rest of cheks return false otherwise reassign value;
+        //if previos check return false than for rest of cheks return false otherwise reassign value;
         if (acc === false) {
           return acc;
         }
