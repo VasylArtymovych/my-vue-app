@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect, computed } from 'vue';
-const val = ref('yerim');
+import { ref, watch, watchEffect, computed } from "vue";
+const val = ref("yerim");
 const checked = ref(false);
 const names = ref([]);
 const obj = ref({ count: 0 });
@@ -57,7 +57,7 @@ watchEffect(async () => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
   );
-  console.log('firstEffect', checked.value);
+  console.log("firstEffect", checked.value);
   data.value = await response.json();
 });
 

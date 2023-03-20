@@ -1,8 +1,8 @@
 <template lang="">
   <div>
-    <pre>
+    <!-- <pre>
       {{ form }}
-    </pre>
+    </pre> -->
     <form class="form" @submit.prevent="submit">
       <h2 class="form-title">Form with validation</h2>
 
@@ -56,18 +56,18 @@
 </template>
 
 <script>
-import { useForm } from '@/hooks/useForm';
-import { required, minLength } from '@/utils/validators';
+import { useForm } from "@/hooks/useForm";
+import { required, minLength } from "@/utils/validators";
 
 export default {
   setup() {
     const form = useForm({
       email: {
-        value: '',
+        value: "",
         validators: { required },
       },
       password: {
-        value: '',
+        value: "",
         validators: { minLength: minLength(7), required },
       },
     });

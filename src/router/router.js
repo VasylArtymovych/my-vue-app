@@ -1,30 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '@/pages/Home.vue';
-import PostsPage from '@/pages/PostsPage.vue';
-import PostDescription from '@/pages/PostDescription.vue';
-import PostPageWithStore from '@/pages/PostPageWithStore.vue';
-import PostPageCompositionApi from '@/pages/PostPageCompositionApi';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "@/pages/Home.vue";
+import PostsPage from "@/pages/PostsPage.vue";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
+    name: "home",
     component: Home,
   },
   {
-    path: '/posts',
+    path: "/posts",
     component: PostsPage,
   },
   {
-    path: '/posts/:id',
-    component: PostDescription,
+    path: "/posts/:id",
+    component: () => import("@/pages/PostDescription.vue"), //lazy loading
   },
   {
-    path: '/store',
-    component: PostPageWithStore,
+    path: "/store",
+    component: () => import("@/pages/PostPageWithStore.vue"),
   },
   {
-    path: '/compositionApi',
-    component: PostPageCompositionApi,
+    path: "/compositionApi",
+    component: () => import("@/pages/PostPageCompositionApi"),
   },
 ];
 

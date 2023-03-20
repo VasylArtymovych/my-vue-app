@@ -1,18 +1,21 @@
 <template>
-  <div v-if="show" class="dialog" @click.self.stop="hideDialog">
-    <div class="dialog-content">
-      <slot></slot>
+  <Teleport to="#dialog-container">
+    <div v-if="show" class="dialog" @click.self.stop="hideDialog">
+      <div class="dialog-content">
+        <slot></slot>
+      </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script>
-import toggleMixin from '@/mixins/toggleMixin';
+import toggleMixin from "@/mixins/toggleMixin";
 
 export default {
-  name: 'custom-dialog',
+  name: "custom-dialog",
   mixins: [toggleMixin],
-  //now this logic is stored in toggleMixin!!!
+
+  // logic which hided in mixin.
   // props: {
   //   show: {
   //     type: Boolean,
@@ -22,7 +25,7 @@ export default {
 
   // methods: {
   //   hideDialog() {
-  //     this.$emit('update:show', false);
+  //     this.$emit("update:show", false);
   //   },
   // },
 };

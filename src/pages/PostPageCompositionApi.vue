@@ -31,17 +31,18 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import Postform from '@/components/PostForm.vue';
-import PostList from '@/components/PostList.vue';
-import CustomDialog from '@/components/UI/CustomDialog.vue';
-import { usePosts, useSortedPosts, useSortedAndSearchedPosts } from '@/hooks';
+import { ref, reactive } from "vue";
+import Postform from "@/components/PostForm.vue";
+import PostList from "@/components/PostList.vue";
+import CustomDialog from "@/components/UI/CustomDialog.vue";
+import { usePosts, useSortedPosts, useSortedAndSearchedPosts } from "@/hooks";
 
 const isVisibleDialog = ref(false);
 const sortOptions = reactive([
-  { value: 'title', name: 'sort by title' },
-  { value: 'body', name: 'sort by text' },
+  { value: "title", name: "sort by title" },
+  { value: "body", name: "sort by text" },
 ]);
+
 const { posts, isLoading, createPost, deletePost } = usePosts(10);
 const { selectedSort, sortedPosts } = useSortedPosts(posts);
 const { searchQuery, sortedAndSearchedPosts } =

@@ -1,16 +1,16 @@
 <template>
   <button class="btn" :type="type" :disabled="isDisabled">
-    <slot></slot>
+    <slot>Click me</slot>
   </button>
 </template>
 
 <script>
 export default {
-  name: 'custom-button',
+  name: "custom-button",
   props: {
     type: {
       type: String,
-      default: 'submit',
+      default: "submit",
     },
     isDisabled: Boolean,
   },
@@ -43,5 +43,10 @@ export default {
   -webkit-box-shadow: inset 0 0px 4px 2px teal;
   -moz-box-shadow: inset 0 0px 4px 2px teal;
   box-shadow: inset 0 0px 4px 2px teal;
+}
+
+.activeTab {
+  border: 2px solid teal;
+  background-color: aquamarine;
 }
 </style>
